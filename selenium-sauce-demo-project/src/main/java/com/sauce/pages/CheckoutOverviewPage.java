@@ -26,6 +26,9 @@ public class CheckoutOverviewPage extends TestBase {
 	@FindBy(id="cancel")
 	WebElement cancelBtn;
 	
+	@FindBy(xpath="//div[starts-with(text(),'Sauce Labs')]")
+	WebElement itemLabel;
+	
 	@FindBy(className="cart_quantity_label")
 	WebElement qty;
 	
@@ -40,4 +43,17 @@ public class CheckoutOverviewPage extends TestBase {
 	public String fetchTotalPrice() {
 		return priceInfo.getText();
 	}
+	
+	public String itemInfo() {
+		return itemLabel.getText();
+	}
+	public ProductsPage clickCancel() {
+		cancelBtn.click();
+		return new ProductsPage();
+	}
+	public CheckoutCompletePage clickFinish() {
+		finishBtn.click();
+		return new CheckoutCompletePage();
+	}
+	
 }
