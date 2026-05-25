@@ -1,7 +1,9 @@
 package com.sauce.testcases;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.sauce.base.TestBase;
@@ -19,6 +21,8 @@ public class CheckoutPageTest extends TestBase{
 	CheckoutPage checkoutPage;
 	TestUtil testUtil;
 	CheckoutOverviewPage checkoutOverviewPage;
+	
+	String sheetname = "Sheet1";
 	
 	public CheckoutPageTest() {
 		super();
@@ -60,5 +64,18 @@ public class CheckoutPageTest extends TestBase{
 		String checkoutInfo = checkoutPage.passInfo(prop.getProperty("firstname"),prop.getProperty("lastname"),prop.getProperty("zipcode"));
 		System.out.println(checkoutInfo);
 		checkoutPage.validationContinue();
+	}
+	@DataProvider
+	public Object[][] getTestData() {
+		Object data[][] = testUtil.getTestData(sheetname);
+		return data;
+	}
+	@Test(priority =5,dataProvider="getTestData")
+	public void passDataTest(String firstname, String lastname, String postalcode) {
+		System.out.println("checkoutPage.passData(firstname, lastname, postalcode");
+	}
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
 	}
 }
