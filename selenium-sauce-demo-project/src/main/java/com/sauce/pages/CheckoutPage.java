@@ -33,12 +33,12 @@ public class CheckoutPage extends TestBase{
 	public String  verifyTitle() {
 		return title.getText();
 	}
-	public String passInfo(String firstname, String lastname, String zipcode) {
-		firstName.sendKeys(firstname);
-		lastName.sendKeys(lastname);
+	public String passInfo(String ftname, String ltname, String zipcode) {
+		firstName.sendKeys(ftname);
+		lastName.sendKeys(ltname);
 		postalCode.sendKeys(zipcode);
 		
-		return firstname + " " + lastname + " " + zipcode;	
+		return ftname + " " + ltname + " " + zipcode;	
 		}
 	public void clickContinue() {
 		continueBtn.click();
@@ -50,7 +50,11 @@ public class CheckoutPage extends TestBase{
 		continueBtn.click();
 		return new CheckoutOverviewPage();
 	}
-
+	public void passData(String firstname,String lastname,String postalcode) {
+		firstName.sendKeys(firstname);
+		lastName.sendKeys(lastname);
+		postalCode.sendKeys(postalcode);
+	}
 
 }
 
